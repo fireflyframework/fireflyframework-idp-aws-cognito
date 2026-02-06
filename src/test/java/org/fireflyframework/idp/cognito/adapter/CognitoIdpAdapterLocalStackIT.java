@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Firefly Software Solutions Inc
+ * Copyright 2024-2026 Firefly Software Solutions Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.firefly.idp.cognito.adapter;
+package org.fireflyframework.idp.cognito.adapter;
 
-import com.firefly.idp.cognito.client.CognitoClientFactory;
-import com.firefly.idp.cognito.properties.CognitoProperties;
-import com.firefly.idp.cognito.service.CognitoAdminService;
-import com.firefly.idp.cognito.service.CognitoUserService;
-import com.firefly.idp.dtos.*;
+import org.fireflyframework.idp.cognito.client.CognitoClientFactory;
+import org.fireflyframework.idp.cognito.properties.CognitoProperties;
+import org.fireflyframework.idp.cognito.service.CognitoAdminService;
+import org.fireflyframework.idp.cognito.service.CognitoUserService;
+import org.fireflyframework.idp.dtos.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.*;
 import org.springframework.http.HttpStatus;
@@ -334,7 +334,7 @@ class CognitoIdpAdapterLocalStackIT {
     @Order(8)
     @DisplayName("Should change user password")
     void testChangePassword() {
-        com.firefly.idp.dtos.ChangePasswordRequest request = com.firefly.idp.dtos.ChangePasswordRequest.builder()
+        org.fireflyframework.idp.dtos.ChangePasswordRequest request = org.fireflyframework.idp.dtos.ChangePasswordRequest.builder()
                 .userId(TEST_USERNAME)
                 .oldPassword(TEST_PASSWORD)
                 .newPassword("NewTestPass123!")

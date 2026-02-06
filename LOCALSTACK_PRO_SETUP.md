@@ -84,7 +84,7 @@ The `pom.xml` is already configured to use LocalStack PRO. Verify the configurat
 
 The test is already configured. Just **remove or comment out the @Disabled annotation**:
 
-**File**: `src/test/java/com/firefly/idp/cognito/adapter/CognitoIdpAdapterLocalStackIT.java`
+**File**: `src/test/java/org/fireflyframework/idp/cognito/adapter/CognitoIdpAdapterLocalStackIT.java`
 
 ```java
 @Testcontainers
@@ -115,7 +115,7 @@ static LocalStackContainer localstack = new LocalStackContainer(
 export LOCALSTACK_AUTH_TOKEN="your-auth-token-here"
 
 # Run integration tests
-cd ~/Development/firefly/lib-idp-aws-cognito-impl
+cd ~/Development/firefly/fireflyframework-idp-aws-cognito-impl
 mvn clean verify -Dit.test=CognitoIdpAdapterLocalStackIT
 
 # Or run all tests including integration
@@ -384,7 +384,7 @@ https://app.localstack.cloud/workspace/auth-tokens
 export LOCALSTACK_AUTH_TOKEN="your-token"
 
 # 3. Run tests
-cd ~/Development/firefly/lib-idp-aws-cognito-impl
+cd ~/Development/firefly/fireflyframework-idp-aws-cognito-impl
 mvn clean verify
 
 # That's it! Tests will use LocalStack PRO automatically

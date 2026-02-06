@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Firefly Software Solutions Inc
+ * Copyright 2024-2026 Firefly Software Solutions Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.firefly.idp.cognito.adapter;
+package org.fireflyframework.idp.cognito.adapter;
 
-import com.firefly.idp.adapter.IdpAdapter;
-import com.firefly.idp.cognito.service.CognitoAdminService;
-import com.firefly.idp.cognito.service.CognitoUserService;
-import com.firefly.idp.dtos.*;
+import org.fireflyframework.idp.adapter.IdpAdapter;
+import org.fireflyframework.idp.cognito.service.CognitoAdminService;
+import org.fireflyframework.idp.cognito.service.CognitoUserService;
+import org.fireflyframework.idp.dtos.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

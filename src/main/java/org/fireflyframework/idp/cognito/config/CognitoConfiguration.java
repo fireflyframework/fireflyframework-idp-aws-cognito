@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Firefly Software Solutions Inc
+ * Copyright 2024-2026 Firefly Software Solutions Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,9 +14,9 @@
  * limitations under the License.
  */
 
-package com.firefly.idp.cognito.config;
+package org.fireflyframework.idp.cognito.config;
 
-import com.firefly.idp.cognito.properties.CognitoProperties;
+import org.fireflyframework.idp.cognito.properties.CognitoProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -35,16 +35,16 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableConfigurationProperties(CognitoProperties.class)
-@ComponentScan(basePackages = "com.firefly.idp.cognito")
+@ComponentScan(basePackages = "org.fireflyframework.idp.cognito")
 @Slf4j
 public class CognitoConfiguration {
 
     @Bean
-    public com.firefly.idp.cognito.client.CognitoClientFactory cognitoClientFactory(CognitoProperties properties) {
+    public org.fireflyframework.idp.cognito.client.CognitoClientFactory cognitoClientFactory(CognitoProperties properties) {
         log.info("Configuring AWS Cognito Client Factory for region: {}", properties.getRegion());
         
-        com.firefly.idp.cognito.client.CognitoClientFactory factory = 
-                new com.firefly.idp.cognito.client.CognitoClientFactory(properties);
+        org.fireflyframework.idp.cognito.client.CognitoClientFactory factory = 
+                new org.fireflyframework.idp.cognito.client.CognitoClientFactory(properties);
         
         // Configure endpoint override if provided (for LocalStack testing)
         if (properties.getEndpointOverride() != null && !properties.getEndpointOverride().isEmpty()) {

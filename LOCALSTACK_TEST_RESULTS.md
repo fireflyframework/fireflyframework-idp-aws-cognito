@@ -291,7 +291,7 @@ void testLoginFailureWrongPassword() {
 export LOCALSTACK_AUTH_TOKEN="your-token-here"
 
 # Run integration tests
-cd ~/Development/firefly/lib-idp-aws-cognito-impl
+cd ~/Development/firefly/fireflyframework-idp-aws-cognito-impl
 mvn verify -Dit.test=CognitoIdpAdapterLocalStackIT
 
 # Expected output

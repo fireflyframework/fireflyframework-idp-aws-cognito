@@ -1,6 +1,6 @@
-# Firefly OpenCore Banking Platform — lib-idp-aws-cognito-impl
+# Firefly Framework — fireflyframework-idp-aws-cognito-impl
 
-Identity Provider (IdP) adapter that implements the Firefly lib-idp port using AWS Cognito. It exposes a reactive (Spring WebFlux) interface for authentication and authorization and provides an administrative surface for user, role (group), session, and password management.
+Identity Provider (IdP) adapter that implements the Firefly fireflyframework-idp port using AWS Cognito. It exposes a reactive (Spring WebFlux) interface for authentication and authorization and provides an administrative surface for user, role (group), session, and password management.
 
 ---
 
@@ -34,10 +34,10 @@ Identity Provider (IdP) adapter that implements the Firefly lib-idp port using A
 ---
 
 ## Overview
-This repository provides the AWS Cognito-backed implementation of the Firefly lib-idp adapter. Within a hexagonal (ports-and-adapters) architecture, it delegates identity operations to a configured AWS Cognito User Pool and presents a consistent interface for Firefly services.
+This repository provides the AWS Cognito-backed implementation of the Firefly fireflyframework-idp adapter. Within a hexagonal (ports-and-adapters) architecture, it delegates identity operations to a configured AWS Cognito User Pool and presents a consistent interface for Firefly services.
 
 **What this project is:**
-- An adapter of the Firefly lib-idp port backed by AWS Cognito
+- An adapter of the Firefly fireflyframework-idp port backed by AWS Cognito
 - A focused library exposing consistent IdP APIs for Firefly components
 - Reactive (non-blocking) using Spring WebFlux and Project Reactor
 - Fully integrated with the Firefly Security Center
@@ -48,18 +48,18 @@ This repository provides the AWS Cognito-backed implementation of the Firefly li
 - A standalone microservice (it is a library dependency)
 
 ## Architecture
-- **Ports**: Provided by the upstream dependency `com.firefly:lib-idp-adapter` (DTOs and `IdpAdapter` interface)
+- **Ports**: Provided by the upstream dependency `org.fireflyframework:fireflyframework-idp-adapter` (DTOs and `IdpAdapter` interface)
 - **Adapter/Implementation**: This repository implements `IdpAdapter` using AWS SDK for Java v2 (Cognito Identity Provider client)
 - **Transport**: Reactive (Mono/Flux) via Spring WebFlux
 - **Config**: Strongly-typed via `CognitoProperties` bound from `application.yaml`
 
 **Packages of interest:**
-- `com.firefly.idp.cognito.adapter` — Main `CognitoIdpAdapter` implementation
-- `com.firefly.idp.cognito.service` — Business logic services (CognitoUserService, CognitoAdminService)
-- `com.firefly.idp.cognito.client` — AWS Cognito client factory
-- `com.firefly.idp.cognito.properties` — Configuration properties binding
-- `com.firefly.idp.cognito.config` — Spring configuration
-- `com.firefly.idp.cognito.util` — Utility classes (e.g., SECRET_HASH calculator)
+- `org.fireflyframework.idp.cognito.adapter` — Main `CognitoIdpAdapter` implementation
+- `org.fireflyframework.idp.cognito.service` — Business logic services (CognitoUserService, CognitoAdminService)
+- `org.fireflyframework.idp.cognito.client` — AWS Cognito client factory
+- `org.fireflyframework.idp.cognito.properties` — Configuration properties binding
+- `org.fireflyframework.idp.cognito.config` — Spring configuration
+- `org.fireflyframework.idp.cognito.util` — Utility classes (e.g., SECRET_HASH calculator)
 
 ## Requirements
 - Java 21+
@@ -117,8 +117,8 @@ mvn test
 **Include in your project:**
 ```xml
 <dependency>
-    <groupId>com.firefly</groupId>
-    <artifactId>lib-idp-aws-cognito-impl</artifactId>
+    <groupId>org.fireflyframework</groupId>
+    <artifactId>fireflyframework-idp-aws-cognito-impl</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 </dependency>
 ```
@@ -267,7 +267,7 @@ This adapter is automatically loaded by the Security Center when:
 The Security Center's `IdpAutoConfiguration` uses `@ConditionalOnClass` to detect this implementation:
 ```java
 @Bean
-@ConditionalOnClass(name = "com.firefly.idp.cognito.adapter.CognitoIdpAdapter")
+@ConditionalOnClass(name = "org.fireflyframework.idp.cognito.adapter.CognitoIdpAdapter")
 @ConditionalOnProperty(name = "firefly.security-center.idp.provider", havingValue = "cognito")
 public IdpAdapter cognitoIdpAdapter(ApplicationContext context) {
     return context.getBean(CognitoIdpAdapter.class);
@@ -313,7 +313,7 @@ The adapter implements all methods from `IdpAdapter`:
 ## Development Notes
 - **Reactive Stack**: Spring WebFlux + Project Reactor (Mono/Flux)
 - **AWS SDK**: AWS SDK for Java v2 (software.amazon.awssdk:cognitoidentityprovider)
-- **DTOs**: Provided by `com.firefly:lib-idp-adapter`
+- **DTOs**: Provided by `org.fireflyframework:fireflyframework-idp-adapter`
 - **Lombok**: Used for boilerplate reduction (@Data, @RequiredArgsConstructor, @Slf4j)
 - **Validation**: Jakarta Validation annotations on properties
 
@@ -333,12 +333,12 @@ The adapter implements all methods from `IdpAdapter`:
 ```yaml
 logging:
   level:
-    com.firefly.idp.cognito: DEBUG
+    org.fireflyframework.idp.cognito: DEBUG
     software.amazon.awssdk: DEBUG
 ```
 
 ## Versioning
-- Maven coordinates: `com.firefly:lib-idp-aws-cognito-impl:1.0.0-SNAPSHOT`
+- Maven coordinates: `org.fireflyframework:fireflyframework-idp-aws-cognito-impl:1.0.0-SNAPSHOT`
 - Java version: 21
 - AWS SDK version: 2.20.26
 

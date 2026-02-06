@@ -1,5 +1,5 @@
 /*
- * Copyright 2025 Firefly Software Solutions Inc
+ * Copyright 2024-2026 Firefly Software Solutions Inc
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.firefly.idp.cognito.service;
+package org.fireflyframework.idp.cognito.service;
 
-import com.firefly.idp.cognito.client.CognitoClientFactory;
-import com.firefly.idp.cognito.properties.CognitoProperties;
-import com.firefly.idp.dtos.*;
+import org.fireflyframework.idp.cognito.client.CognitoClientFactory;
+import org.fireflyframework.idp.cognito.properties.CognitoProperties;
+import org.fireflyframework.idp.dtos.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -123,7 +123,7 @@ public class CognitoAdminService {
     /**
      * Change user password
      */
-    public Mono<Void> changePassword(com.firefly.idp.dtos.ChangePasswordRequest request) {
+    public Mono<Void> changePassword(org.fireflyframework.idp.dtos.ChangePasswordRequest request) {
         return Mono.fromRunnable(() -> {
             log.info("Changing password for user: {}", request.getUserId());
             
