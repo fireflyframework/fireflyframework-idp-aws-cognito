@@ -1,5 +1,7 @@
 # Firefly Framework — fireflyframework-idp-aws-cognito-impl
 
+[![CI](https://github.com/fireflyframework/fireflyframework-idp-aws-cognito/actions/workflows/ci.yml/badge.svg)](https://github.com/fireflyframework/fireflyframework-idp-aws-cognito/actions/workflows/ci.yml)
+
 Identity Provider (IdP) adapter that implements the Firefly fireflyframework-idp port using AWS Cognito. It exposes a reactive (Spring WebFlux) interface for authentication and authorization and provides an administrative surface for user, role (group), session, and password management.
 
 ---
