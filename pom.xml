@@ -7,19 +7,19 @@
     <parent>
         <groupId>org.fireflyframework</groupId>
         <artifactId>fireflyframework-parent</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>26.01.01</version>
         <relativePath/>
     </parent>
 
     <artifactId>fireflyframework-idp-aws-cognito</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>26.01.01</version>
     <packaging>jar</packaging>
 
     <name>Firefly Framework - IDP - AWS Cognito Implementation</name>
     <description>AWS Cognito implementation of the Firefly IDP Adapter</description>
 
     <properties>
-        <fireflyframework-idp.version>1.0.0-SNAPSHOT</fireflyframework-idp.version>
+        <fireflyframework-idp.version>26.01.01</fireflyframework-idp.version>
         <aws.sdk.version>2.20.26</aws.sdk.version>
     </properties>
 
