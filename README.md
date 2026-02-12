@@ -50,7 +50,7 @@ The module includes `CognitoIdpAdapter` as the main adapter implementation, back
 <dependency>
     <groupId>org.fireflyframework</groupId>
     <artifactId>fireflyframework-idp-aws-cognito</artifactId>
-    <version>26.02.01</version>
+    <version>26.02.02</version>
 </dependency>
 ```
 
