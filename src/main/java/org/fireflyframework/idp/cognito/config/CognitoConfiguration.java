@@ -16,46 +16,76 @@
 
 package org.fireflyframework.idp.cognito.config;
 
+import org.fireflyframework.idp.adapter.IdpAdapter;
+import org.fireflyframework.idp.cognito.adapter.CognitoIdpAdapter;
+import org.fireflyframework.idp.cognito.client.CognitoClientFactory;
 import org.fireflyframework.idp.cognito.properties.CognitoProperties;
+import org.fireflyframework.idp.cognito.service.CognitoAdminService;
+import org.fireflyframework.idp.cognito.service.CognitoUserService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import software.amazon.awssdk.services.cognitoidentityprovider.CognitoIdentityProviderClient;
 
 /**
- * Spring configuration for AWS Cognito IDP Adapter.
- * 
+ * Spring auto-configuration for AWS Cognito IDP Adapter.
+ *
  * <p>This configuration class:
  * <ul>
  *   <li>Enables Cognito configuration properties</li>
- *   <li>Scans the Cognito adapter package for components</li>
- *   <li>Is automatically loaded when provider=cognito</li>
+ *   <li>Provides explicit bean definitions for all Cognito components</li>
+ *   <li>Is automatically loaded when provider=cognito and the Cognito SDK is on the classpath</li>
  * </ul>
  */
-@Configuration
+@AutoConfiguration
+@ConditionalOnProperty(name = "firefly.idp.provider", havingValue = "cognito")
+@ConditionalOnClass(CognitoIdentityProviderClient.class)
 @EnableConfigurationProperties(CognitoProperties.class)
-@ComponentScan(basePackages = "org.fireflyframework.idp.cognito")
 @Slf4j
 public class CognitoConfiguration {
 
+    public CognitoConfiguration() {
+        log.info("AWS Cognito IDP Adapter Configuration loaded");
+    }
+
     @Bean
-    public org.fireflyframework.idp.cognito.client.CognitoClientFactory cognitoClientFactory(CognitoProperties properties) {
+    @ConditionalOnMissingBean
+    public CognitoClientFactory cognitoClientFactory(CognitoProperties properties) {
         log.info("Configuring AWS Cognito Client Factory for region: {}", properties.getRegion());
-        
-        org.fireflyframework.idp.cognito.client.CognitoClientFactory factory = 
-                new org.fireflyframework.idp.cognito.client.CognitoClientFactory(properties);
-        
+
+        CognitoClientFactory factory = new CognitoClientFactory(properties);
+
         // Configure endpoint override if provided (for LocalStack testing)
         if (properties.getEndpointOverride() != null && !properties.getEndpointOverride().isEmpty()) {
             log.info("Configuring Cognito client with endpoint override: {}", properties.getEndpointOverride());
             factory.setEndpointOverride(java.net.URI.create(properties.getEndpointOverride()));
         }
-        
+
         return factory;
     }
-    
-    public CognitoConfiguration() {
-        log.info("AWS Cognito IDP Adapter Configuration loaded");
+
+    @Bean
+    @ConditionalOnMissingBean
+    public CognitoUserService cognitoUserService(CognitoClientFactory clientFactory, CognitoProperties properties) {
+        log.info("Configuring Cognito User Service");
+        return new CognitoUserService(clientFactory, properties);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public CognitoAdminService cognitoAdminService(CognitoClientFactory clientFactory, CognitoProperties properties) {
+        log.info("Configuring Cognito Admin Service");
+        return new CognitoAdminService(clientFactory, properties);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(IdpAdapter.class)
+    public IdpAdapter cognitoIdpAdapter(CognitoUserService userService, CognitoAdminService adminService) {
+        log.info("Configuring Cognito IDP Adapter");
+        return new CognitoIdpAdapter(userService, adminService);
     }
 }

@@ -31,9 +31,8 @@ import jakarta.validation.constraints.NotBlank;
  * <p><strong>Configuration Example:</strong></p>
  * <pre>
  * firefly:
- *   security-center:
- *     idp:
- *       cognito:
+ *   idp:
+ *     cognito:
  *         region: us-east-1
  *         user-pool-id: us-east-1_XXXXXXXXX
  *         client-id: your-client-id
@@ -42,7 +41,7 @@ import jakarta.validation.constraints.NotBlank;
  */
 @Data
 @Validated
-@ConfigurationProperties(prefix = "firefly.security-center.idp.cognito")
+@ConfigurationProperties(prefix = "firefly.idp.cognito")
 public class CognitoProperties {
 
     /**

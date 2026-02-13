@@ -19,7 +19,6 @@ package org.fireflyframework.idp.cognito.client;
 import org.fireflyframework.idp.cognito.properties.CognitoProperties;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Component;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
 import software.amazon.awssdk.auth.credentials.AwsCredentialsProvider;
 import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
@@ -37,7 +36,6 @@ import java.time.Duration;
  * <p>This factory creates a singleton instance of the Cognito client
  * configured with the appropriate region and timeouts from properties.
  */
-@Component
 @RequiredArgsConstructor
 @Slf4j
 public class CognitoClientFactory {
