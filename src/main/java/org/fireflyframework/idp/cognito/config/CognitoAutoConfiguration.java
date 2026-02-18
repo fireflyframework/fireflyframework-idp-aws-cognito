@@ -46,9 +46,9 @@ import software.amazon.awssdk.services.cognitoidentityprovider.CognitoIdentityPr
 @ConditionalOnClass(CognitoIdentityProviderClient.class)
 @EnableConfigurationProperties(CognitoProperties.class)
 @Slf4j
-public class CognitoConfiguration {
+public class CognitoAutoConfiguration {
 
-    public CognitoConfiguration() {
+    public CognitoAutoConfiguration() {
         log.info("AWS Cognito IDP Adapter Configuration loaded");
     }
 

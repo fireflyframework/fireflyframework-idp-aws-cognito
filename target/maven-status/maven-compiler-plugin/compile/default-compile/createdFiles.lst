@@ -3,6 +3,6 @@ META-INF/spring-configuration-metadata.json
 org/fireflyframework/idp/cognito/adapter/CognitoIdpAdapter.class
 org/fireflyframework/idp/cognito/properties/CognitoProperties.class
 org/fireflyframework/idp/cognito/util/CognitoSecretHashCalculator.class
-org/fireflyframework/idp/cognito/config/CognitoConfiguration.class
 org/fireflyframework/idp/cognito/service/CognitoUserService.class
+org/fireflyframework/idp/cognito/config/CognitoAutoConfiguration.class
 org/fireflyframework/idp/cognito/client/CognitoClientFactory.class

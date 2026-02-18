@@ -1,1 +1,1 @@
-org.fireflyframework.idp.cognito.config.CognitoConfiguration
+org.fireflyframework.idp.cognito.config.CognitoAutoConfiguration
